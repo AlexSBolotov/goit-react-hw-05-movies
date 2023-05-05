@@ -1,8 +1,7 @@
 // import MovieList from 'components/MovieList/MovieList';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Movies = () => {
-  const { movieId } = useParams();
   return (
     <main>
       <form>
@@ -13,7 +12,7 @@ const Movies = () => {
       </form>
       <ul>
         <Link key={1} to={'12'}>
-          <li>Movie {movieId} title </li>
+          <li>Movie title </li>
         </Link>
       </ul>
       {/* <MovieList /> */}
