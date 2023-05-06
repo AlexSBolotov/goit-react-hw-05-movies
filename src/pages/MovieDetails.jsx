@@ -43,9 +43,9 @@ const MovieDetails = () => {
           <p>{movie.overview}</p>
           <h3>Genres</h3>
           <p>
-            {/* {movie.genres.map(({ name }) => (
+            {movie.genres.map(({ name }) => (
               <span>{name} </span>
-            ))} */}
+            ))}
           </p>
         </div>
       </div>
