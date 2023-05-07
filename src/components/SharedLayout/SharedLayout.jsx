@@ -1,13 +1,18 @@
 import { Outlet, Link } from 'react-router-dom';
 import { Suspense } from 'react';
+import s from './SharedLayout.module.css';
 
 const SharedLayout = () => {
   return (
     <>
-      <header>
+      <header className={s.header}>
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/movies">Movies</Link>
+          <Link className={s.link} to="/">
+            <span>Home</span>
+          </Link>
+          <Link className={s.link} to="/movies">
+            <span>Movies</span>
+          </Link>
         </nav>
       </header>
       <main>

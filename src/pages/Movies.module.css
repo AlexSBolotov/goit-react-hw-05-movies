@@ -1,0 +1,15 @@
+.form {
+  padding: 10px 0;
+  border-bottom: 2px solid grey;
+}
+
+.submit {
+  margin-left: 10px;
+}
+.link {
+  text-decoration: none;
+  color: grey;
+}
+.link:hover {
+  text-decoration: underline;
+}

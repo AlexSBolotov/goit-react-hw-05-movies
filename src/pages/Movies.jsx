@@ -1,8 +1,10 @@
-// import MovieList from 'components/MovieList/MovieList';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import { getMovieByQuery } from 'helpers/movieApi';
+import s from './Movies.module.css';
 
 const Movies = () => {
+  const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const location = useLocation();
@@ -16,22 +18,39 @@ const Movies = () => {
     e.currentTarget.elements.query.value = '';
   };
   useEffect(() => {
-    console.log(query);
-  });
+    getMovieByQuery(query)
+      .then(response => {
+        setMovies([]);
+        setMovies(prev => [...prev, ...response.results]);
+      })
+      .catch()
+      .finally();
+  }, [query]);
+  const moviesMarkup = () => {
+    return (
+      <ul>
+        {movies.map(({ title, id }) => (
+          <Link
+            className={s.link}
+            key={id}
+            state={{ from: location }}
+            to={`${id}`}
+          >
+            <li>{title}</li>
+          </Link>
+        ))}
+      </ul>
+    );
+  };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="text" name="query"></input>
-          <button type="submit">Search</button>
-        </label>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <input type="text" name="query" required></input>
+        <button className={s.submit} type="submit">
+          Search
+        </button>
       </form>
-      <ul>
-        <Link key={1} state={{ from: location }} to={'12'}>
-          <li>Movie title </li>
-        </Link>
-      </ul>
-      {/* <MovieList /> */}
+      {movies || movies.length !== 0 ? moviesMarkup() : <p>Movies not found</p>}
     </>
   );
 };
