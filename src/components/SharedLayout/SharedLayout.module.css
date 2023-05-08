@@ -19,9 +19,7 @@ main {
 .link:hover {
   color: coral;
 }
-/* .link:current {
-  color: coral;
-} */
+
 .active {
   font-size: 18px;
   font-weight: 500;

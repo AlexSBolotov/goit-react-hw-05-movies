@@ -1,6 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { Suspense } from 'react';
-// import clsx from 'clsx';
+import clsx from 'clsx';
 // import styled from 'styled-components';
 
 import s from './SharedLayout.module.css';
@@ -23,21 +23,17 @@ const SharedLayout = () => {
         <nav>
           <NavLink
             to="/"
-            // end
-            className={s.link}
-            // {isActive => {
-            //   return clsx(isActive ? s.active : s.link);
-            // }}
+            className={({ isActive }) => {
+              return clsx(isActive ? s.active : s.link);
+            }}
           >
             <span>Home</span>
           </NavLink>
           <NavLink
             to="/movies"
-            // end
-            className={s.link}
-            // {isActive => {
-            //   return clsx(isActive ? s.active : s.link);
-            // }}
+            className={({ isActive }) => {
+              return clsx(isActive ? s.active : s.link);
+            }}
           >
             <span>Movies</span>
           </NavLink>
