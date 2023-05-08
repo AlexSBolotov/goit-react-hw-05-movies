@@ -1,9 +1,21 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { Suspense } from 'react';
 // import clsx from 'clsx';
+// import styled from 'styled-components';
 
 import s from './SharedLayout.module.css';
 
+// const StyledNavLink = styled(NavLink)`
+//   font-size: 18px;
+//   font-weight: 500;
+//   text-decoration: none;
+//   margin-right: 20px;
+//   color: grey;
+
+//   &.active {
+//     color: coral;
+//   }
+// `;
 const SharedLayout = () => {
   return (
     <>

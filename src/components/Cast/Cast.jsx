@@ -12,8 +12,8 @@ const Cast = () => {
     movieId &&
       getCreditsById(movieId)
         .then(res => {
-          setActors([]);
-          setActors(prev => [...prev, ...res.cast]);
+          // setActors([]);
+          setActors(res.cast);
         })
         .catch(err => console.log(err));
   }, [movieId]);
