@@ -4,7 +4,7 @@ import { getMovieByQuery } from 'helpers/movieApi';
 import s from './Movies.module.css';
 
 const Movies = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const location = useLocation();
@@ -21,24 +21,29 @@ const Movies = () => {
     query &&
       getMovieByQuery(query)
         .then(response => {
-          setMovies([]);
-          setMovies(prev => [...prev, ...response.results]);
+          // setMovies([]);
+          setMovies(response.results);
         })
         .catch(err => console.log(err));
   }, [query]);
   const moviesMarkup = () => {
     return (
       <ul>
-        {movies.map(({ title, id }) => (
-          <Link
-            className={s.link}
-            key={id}
-            state={{ from: location }}
-            to={`${id}`}
-          >
-            <li>{title}</li>
-          </Link>
-        ))}
+        {movies &&
+          (movies.length > 0 ? (
+            movies.map(({ title, id }) => (
+              <Link
+                className={s.link}
+                key={id}
+                state={{ from: location }}
+                to={`${id}`}
+              >
+                <li>{title}</li>
+              </Link>
+            ))
+          ) : (
+            <p>Movies not found</p>
+          ))}
       </ul>
     );
   };
@@ -50,7 +55,7 @@ const Movies = () => {
           Search
         </button>
       </form>
-      {movies || movies.length !== 0 ? moviesMarkup() : <p>Movies not found</p>}
+      {moviesMarkup()}
     </>
   );
 };

@@ -1,5 +1,7 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
 import { Suspense } from 'react';
+import clsx from 'clsx';
+
 import s from './SharedLayout.module.css';
 
 const SharedLayout = () => {
@@ -7,12 +9,26 @@ const SharedLayout = () => {
     <>
       <header className={s.header}>
         <nav>
-          <Link className={s.link} to="/">
+          <NavLink
+            to="/"
+            // end
+            className={s.link}
+            // {isActive => {
+            //   return clsx(isActive ? s.active : s.link);
+            // }}
+          >
             <span>Home</span>
-          </Link>
-          <Link className={s.link} to="/movies">
+          </NavLink>
+          <NavLink
+            to="/movies"
+            // end
+            className={s.link}
+            // {isActive => {
+            //   return clsx(isActive ? s.active : s.link);
+            // }}
+          >
             <span>Movies</span>
-          </Link>
+          </NavLink>
         </nav>
       </header>
       <main>
