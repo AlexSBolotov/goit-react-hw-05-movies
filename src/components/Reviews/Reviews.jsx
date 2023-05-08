@@ -6,14 +6,14 @@ const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
-    getReviewsById(movieId)
-      .then(res => {
-        // console.log(res.results);
-        setReviews([]);
-        setReviews(prev => [...prev, ...res.results]);
-      })
-      .catch()
-      .finally();
+    movieId &&
+      getReviewsById(movieId)
+        .then(res => {
+          // console.log(res.results);
+          setReviews([]);
+          setReviews(prev => [...prev, ...res.results]);
+        })
+        .catch(err => console.log(err));
   }, [movieId]);
   const reviewsMarkup = () => {
     return reviews.map((review, idx) => (

@@ -9,13 +9,13 @@ const Cast = () => {
   const { movieId } = useParams();
   const [actors, setActors] = useState([]);
   useEffect(() => {
-    getCreditsById(movieId)
-      .then(res => {
-        setActors([]);
-        setActors(prev => [...prev, ...res.cast]);
-      })
-      .catch()
-      .finally();
+    movieId &&
+      getCreditsById(movieId)
+        .then(res => {
+          setActors([]);
+          setActors(prev => [...prev, ...res.cast]);
+        })
+        .catch(err => console.log(err));
   }, [movieId]);
   const castMarkup = () => {
     return (

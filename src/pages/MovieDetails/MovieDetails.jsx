@@ -1,4 +1,4 @@
-import defaultImage from '../images/motivation_00.jpg';
+import defaultImage from '../../images/motivation_00.jpg';
 import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
 import { Suspense, useRef, useState, useEffect } from 'react';
 import { getMovieById } from 'helpers/movieApi';
@@ -12,12 +12,12 @@ const MovieDetails = () => {
   const goBackRef = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
-    getMovieById(movieId)
-      .then(res => {
-        setMovie({ ...res });
-      })
-      .catch()
-      .finally();
+    movieId &&
+      getMovieById(movieId)
+        .then(res => {
+          setMovie({ ...res });
+        })
+        .catch(err => console.log(err));
   }, [movieId]);
 
   const movieDetailsMarkup = () => {

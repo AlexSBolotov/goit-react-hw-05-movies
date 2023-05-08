@@ -32,8 +32,7 @@ const Home = () => {
         setMovies([]);
         setMovies(prev => [...prev, ...response.results]);
       })
-      .catch()
-      .finally();
+      .catch(err => console.log(err));
   }, []);
   //   console.log(movies);
   return homeMarkup();
