@@ -7,7 +7,7 @@ import s from './Cast.module.css';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [actors, setActors] = useState([]);
+  const [actors, setActors] = useState();
   useEffect(() => {
     movieId &&
       getCreditsById(movieId)
@@ -41,7 +41,7 @@ const Cast = () => {
       </ul>
     );
   };
-  return castMarkup();
+  return actors && castMarkup();
 };
 
 export default Cast;

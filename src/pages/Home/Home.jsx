@@ -5,7 +5,7 @@ import { getTrandingMovie } from 'helpers/movieApi';
 import s from './Home.module.css';
 
 const Home = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState();
   const location = useLocation();
   const homeMarkup = () => {
     return (
@@ -29,13 +29,13 @@ const Home = () => {
   useEffect(() => {
     getTrandingMovie()
       .then(response => {
-        setMovies([]);
-        setMovies(prev => [...prev, ...response.results]);
+        // setMovies([]);
+        setMovies(response.results);
       })
       .catch(err => console.log(err));
   }, []);
   //   console.log(movies);
-  return homeMarkup();
+  return movies && homeMarkup();
 };
 
 export default Home;

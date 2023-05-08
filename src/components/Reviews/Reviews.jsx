@@ -4,14 +4,13 @@ import { getReviewsById } from 'helpers/movieApi';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
+  const [reviews, setReviews] = useState();
   useEffect(() => {
     movieId &&
       getReviewsById(movieId)
         .then(res => {
           // console.log(res.results);
-          setReviews([]);
-          setReviews(prev => [...prev, ...res.results]);
+          setReviews(res.results);
         })
         .catch(err => console.log(err));
   }, [movieId]);
@@ -25,11 +24,12 @@ const Reviews = () => {
   };
   return (
     <ul>
-      {reviews || reviews.length !== 0 ? (
-        reviewsMarkup()
-      ) : (
-        <p>We don't have any reviews for this movie</p>
-      )}
+      {reviews &&
+        (reviews.length > 0 ? (
+          reviewsMarkup()
+        ) : (
+          <p>We don't have any reviews for this movie</p>
+        ))}
     </ul>
   );
 };
