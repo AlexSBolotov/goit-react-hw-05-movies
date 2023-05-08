@@ -1,6 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom';
 import { Suspense } from 'react';
-import clsx from 'clsx';
+// import clsx from 'clsx';
 
 import s from './SharedLayout.module.css';
 
