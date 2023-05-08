@@ -18,13 +18,13 @@ const Movies = () => {
     e.currentTarget.elements.query.value = '';
   };
   useEffect(() => {
-    getMovieByQuery(query)
-      .then(response => {
-        setMovies([]);
-        setMovies(prev => [...prev, ...response.results]);
-      })
-      .catch()
-      .finally();
+    query &&
+      getMovieByQuery(query)
+        .then(response => {
+          setMovies([]);
+          setMovies(prev => [...prev, ...response.results]);
+        })
+        .catch(err => console.log(err));
   }, [query]);
   const moviesMarkup = () => {
     return (
